@@ -72,6 +72,8 @@ app.post("/api/timers/:id/stop", authenticate, async (req, res) => {
   await knex("timers").where({ id, user_id: req.user.id }).update({ isActive: false, end: Date.now() });
   res.sendStatus(204);
 });
-
+app.get("/", (req, res) => {
+  res.send("Hello, this is a test response!"); // Возвращаем текстовый ответ
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
